@@ -9,12 +9,19 @@ import { AngularViewerComponent } from "./angular/viewer/viewer.component";
 import { AngularObserverTutorialComponent } from './angular/observer-tutorial/observer-tutorial.component';
 import { AwsComponent } from './aws/aws.component';
 import { AwsViewerComponent } from './aws/viewer/viewer.component';
+import { ProjectComponent } from './project/project.component';
+import { ProjectViewerComponent } from './project/viewer/viewer.component';
 
 const appRoutes: Routes = [
   {path: '', 'component': PythonViewerComponent},
   {path: 'python', 'component': PythonComponent, children: [
     { path: 'viewer/:filename', 'component': PythonViewerComponent },     
   ] },
+
+  {path: 'project/:user/:repo', 'component': ProjectComponent , children: [
+    { path: 'viewer/:filename', 'component': ProjectViewerComponent }
+  ] },
+
   {path: 'angular', 'component': AngularComponent},
   {path: 'angular/project/:name', 'component': AngularProjectComponent}, 
     

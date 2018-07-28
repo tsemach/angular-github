@@ -1,17 +1,25 @@
 
 <div class="sidenav">
   <a 
+    *ngFor="let project of projects"
+    [routerLink]="['/project', project.user, project.repo]"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">{{ project.repo }}
+  </a>
+
+  <a 
     [routerLink]="['/python']"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{exact: true}">Python</a>
-  <a [routerLink]="['/typescript']" href="#">TypeScript</a>
+
+  <!-- <a [routerLink]="['/typescript']" href="#">TypeScript</a>
   <a [routerLink]="['/javascript']" href="#">JavaScript</a>
   <a [routerLink]="['/angular']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" href="#">Angular</a>
   <a [routerLink]="['/machineleaning']" href="#">Machine Learning</a>
   <a [routerLink]="['/kernel']" href="#">Kernel</a>
   <a [routerLink]="['/bettercity']" href="#">BetterCity</a>  
   <a [routerLink]="['/aws']" href="#">AWS</a>  
-  <a [routerLink]="['/aboutme']" href="#" style="color :orange">About Me</a>
+  <a [routerLink]="['/aboutme']" href="#" style="color :orange">About Me</a> -->
 </div>
 
 

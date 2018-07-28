@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../services/projects.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  projects = [];
+
+  constructor(private projectsService: ProjectService) { }
 
   ngOnInit() {
+    this.projects = this.projectsService.getProjects();    
   }
 
 }

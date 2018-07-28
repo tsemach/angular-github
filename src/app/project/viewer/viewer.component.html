@@ -1,0 +1,31 @@
+
+<split direction="horizontal" gutterSize="5">  
+
+  <split-area size="60" style="background: #d9d9d9;">
+
+    <hr class="hr">
+    <div class="code">  
+      <h4 class="h4">({{projectService.current.repo}}) {{filename}}</h4>
+      <codemirror class="CodeMirror" [(ngModel)]="code" [config]="config"></codemirror>                         
+    </div>        
+  </split-area>
+      
+  <split-area size="40">
+    <hr class="hr">
+    <split  direction="vertical" gutterSize="5">
+      <hr class="hr">
+        
+        <split direction="vertical" gutterSize="5">  
+            <split-area size="45">
+              <app-project-viewer-description [description]="description" [from]="from"></app-project-viewer-description>      
+            </split-area>
+            <split-area size="55">
+                <app-project-viewer-output [output]="output"></app-project-viewer-output>
+            </split-area>
+        </split>  
+
+
+    </split>
+  </split-area>
+  
+</split>

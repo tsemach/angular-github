@@ -5,24 +5,24 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 
-import { ReadFileHttpClientService } from '../../services/read-file.httpclient.service';
-import { PythonCodeParser } from './python-code-parser';
+import { ProjectService } from '../../services/projects.service';
+import { ProjectCodeParser } from './project-code-parser';
 
 /**
  * checkout https://stackoverflow.com/questions/36467020/codemirror-as-angular2-component
  */
 
 @Component({
-  selector: 'app-python-viewer',
+  selector: 'app-project-viewer',
   templateUrl: './viewer.component.html',
   styleUrls: ['./viewer.component.css']
 })
-export class PythonViewerComponent implements OnInit {
+export class ProjectViewerComponent implements OnInit {
   code: string = '';
   description = '';
   output = '';
   from = '';
-  parser = new PythonCodeParser();
+  parser = new ProjectCodeParser();
 
   filename: string;
   config={
@@ -35,9 +35,9 @@ export class PythonViewerComponent implements OnInit {
 
   editor:CodeMirror.Editor;
 
-  fileIsReady = new Subject<string>();
+  isFileReady = new Subject<string>();
 
-  constructor(private route: ActivatedRoute, private readFileService: ReadFileHttpClientService) {     
+  constructor(private route: ActivatedRoute, private projectService: ProjectService) {     
   }
 
   ngOnInit() {
@@ -45,17 +45,17 @@ export class PythonViewerComponent implements OnInit {
     
     this.route.params.subscribe(
       (params: Params) => {
-        //console.log("PythonViewerComponent: file = " + params['filename']);
+        console.log("ProjectViewerComponent: file = " + params['filename']);
         this.filename = params['filename'];        
         this.getFile(this.filename);
       }
     )
   }
   
-  getFile(filename) {
-    this.readFileService.setProject('pyexamples');
+  getFile(path) {
+    //this.readFileService.setProject('pyexamples');
   
-    this.fileIsReady.subscribe(
+    this.isFileReady.subscribe(
       (data: string) => {        
         this.code = this.parser.parse(data);
         this.description = this.parser.description;
@@ -63,7 +63,7 @@ export class PythonViewerComponent implements OnInit {
         this.from = this.parser.from;
       }
     );
-    this.readFileService.getFile(filename, this.fileIsReady);
+    this.projectService.getFile(path, this.isFileReady);
   }
 
 }

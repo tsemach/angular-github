@@ -1,0 +1,22 @@
+
+.code {
+  height: 98%;
+  width: 100%; 
+}
+
+.h4 {
+  margin-left: 33px;
+  font-family: monospace;
+  color: blue;
+  margin-top: 7px;
+  margin-bottom: 7px;
+
+}
+a {
+  color: darkslateblue;    
+}
+
+.hr {
+  margin-top: 0px; 
+  margin-bottom: 0px;  
+}

@@ -1,0 +1,11 @@
+projects:
+  - repo: docker
+    user: tsemach
+  - repo: angular-github
+    user: tsemach
+  - repo: pyexamples
+    user: tsemach  
+  - repo: angular-rabbitmq
+    user: tsemach
+  - repo: angular-routing
+    user: tsemach    
