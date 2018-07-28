@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/merge';
@@ -32,6 +33,7 @@ import { ProjectRepository } from './project-repository.interface';
     }
   },
  */
+
 @Injectable()
 export class ProjectService {
   // <start: projects-yaml>
@@ -49,7 +51,7 @@ export class ProjectService {
       user: tsemach    
     `;
   // <end: projects-yaml>  
-  
+
   projects = {};  
   current = new ProjectRepository();
   //isProjectReady = new Subject<{filelist: Array<string>, dirlist: Array<string>}>();
@@ -57,14 +59,15 @@ export class ProjectService {
   private cached = new Map<string, string>();    
   private httpOptions = {
     headers: new HttpHeaders({ 
-      //'Access-Control-Allow-Origin': '*',
-      'Authorization': 'token 9a9bcacdb9d27ec1a81d3d5db07b8de51b4c4a31'      
+      //'Access-Control-Allow-Origin': '*',      
+      'Authorization': `'token ' + ${environment.token}'`    
     })
   };
 
   constructor(private http: HttpClient) {
     this.projects = yaml.load(this.projectsYaml);
     console.log("projects = " + JSON.stringify(this.projects, undefined, 2));      
+    console.log("token = " + environment.token);
     //marked.setOptions({});  
   }
 
