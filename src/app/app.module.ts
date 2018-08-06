@@ -15,7 +15,6 @@ import { ProjectViewerComponent } from './project/viewer/viewer.component';
 import { AppRoutingModule } from './app-routing-module';
 import { ProjectComponent } from './project/project.component';
 import { TopbarNavbarBrandComponent } from './project/topbar-navbar-brand/topbar-navbar-brand.component';
-import { TopbarNavComponent } from './project/topbar-nav/topbar-nav.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProjectLeftMenuComponent } from './project/left-menu/left-menu.component';
 import { DropdownDirective } from './tree-view/dropdown.directive';
@@ -41,6 +40,7 @@ import { AwsDescriptionComponent } from './aws/description/description.component
 import { ProjectService } from './services/projects.service';
 import { ProjectConfigService } from './services/projects-config.service';
 import { GistService } from './services/gist.service';
+import { MarkdownModule } from 'angular2-markdown';
 
 import { PythonViewerComponent } from './python/viewer/viewer.component';
 import { PythonComponent } from './python/python.component';
@@ -48,14 +48,12 @@ import { PythonLeftMenuComponent } from './python/left-menu/left-menu.component'
 import { PythonDescriptionComponent } from './python/description/description.component';
 import { PythonOutputComponent } from './python/output/output.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     ProjectViewerComponent,
     ProjectComponent,
     TopbarNavbarBrandComponent,
-    TopbarNavComponent,
     SidebarComponent,
     ProjectLeftMenuComponent,
     DropdownDirective,
@@ -93,7 +91,8 @@ import { PythonOutputComponent } from './python/output/output.component';
     SortableModule.forRoot(),
     AngularSplitModule,
     HttpClientModule,
-    CodemirrorModule
+    CodemirrorModule,
+    MarkdownModule.forRoot(),
   ],
   providers: [ReadFileHttpClientService, ProjectService, GistService, ProjectConfigService],
   bootstrap: [AppComponent]

@@ -27,6 +27,7 @@ export class ProjectViewerComponent implements OnInit {
   parser = new ProjectCodeParser();
 
   filename: string;
+  isMD = false;
   config={
     mode: "python",
     lineNumbers: true,
@@ -45,8 +46,8 @@ export class ProjectViewerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filename = this.route.snapshot.params['filename'];
-    
+    this.filename = this.route.snapshot.params['filename']; 
+    this.isMD = this.filename.endsWith('.md');
     this.route.params.subscribe(
       (params: Params) => {
         console.log("ProjectViewerComponent: file = " + params['filename']);
@@ -61,7 +62,7 @@ export class ProjectViewerComponent implements OnInit {
   
     this.fileIsReady.subscribe(
       (data: string) => {        
-        this.code = this.parser.parse(data);
+        this.code = this.parser.parse(data);            
         this.description = this.parser.description;
         this.output = this.parser.output;
         this.from = this.parser.from;

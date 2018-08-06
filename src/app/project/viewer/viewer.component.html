@@ -6,7 +6,8 @@
     <hr class="hr">
     <div class="code">  
       <h4 class="h4">({{projectConfigService.current.repo}}) {{filename}}</h4>
-      <codemirror class="CodeMirror" [(ngModel)]="code" [config]="config"></codemirror>                         
+      <!-- <markdown>{{code}} </markdown> -->       
+      <codemirror class="CodeMirror" [(ngModel)]="code" [config]="config"></codemirror>                               
     </div>        
   </split-area>
       

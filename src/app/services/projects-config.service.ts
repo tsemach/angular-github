@@ -31,7 +31,13 @@ export class ProjectConfigService {
     - repo: javascript-rxjs
       user: tsemach
       load: list
+    - repo: angular-rabbitmq
+      user: tsemach
+      load: list  
     - repo: angular-github
+      user: tsemach
+      load: list  
+    - repo: angular-skeleton
       user: tsemach
       load: list  
     - repo: pyexamples
