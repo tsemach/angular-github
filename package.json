@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-		"prebuild" : "echo \"TSEMACH: PREBUILD\"",
+    "prebuild": "echo \"TSEMACH: PREBUILD\"",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -31,6 +31,7 @@
     "ngx-bootstrap": "^3.0.0",
     "path": "^0.12.7",
     "popper.js": "^1.14.3",
+    "rx-txjs": "0.0.2",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
     "zone.js": "^0.8.26"

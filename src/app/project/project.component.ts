@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { ProjectService } from '../services/projects.service';
+import { ProjectConfigService } from '../services/projects-config.service';
+import { ProjectLeftMenuComponent } from './left-menu/left-menu.component';
 
 @Component({
   selector: 'app-project',
@@ -10,11 +11,13 @@ import { ProjectService } from '../services/projects.service';
 })
 export class ProjectComponent implements OnInit {
 
-  @Input() code = '';
+  //@Input() code = '';
+  @ViewChild(ProjectLeftMenuComponent) leftMenu: ProjectLeftMenuComponent;
+
   direction = 'horizontal';
 
   constructor(private route: ActivatedRoute,
-              private projectService: ProjectService) {              
+              private projectConfigService: ProjectConfigService) {              
   }
 
   ngOnInit() {
@@ -29,8 +32,10 @@ export class ProjectComponent implements OnInit {
         console.log("ProjectComponent:init: user=" + params['user']);
         console.log("ProjectComponent:init: repo=" + params['repo']);
     
-        this.projectService.setUser(params['user']);
-        this.projectService.setRepo(params['repo']);        
+        this.projectConfigService.setUser(params['user']);
+        this.projectConfigService.setRepo(params['repo']);        
+
+        this.leftMenu.loadProjectList();
     });
     
   }    

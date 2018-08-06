@@ -52,9 +52,7 @@ export class AwsFileMenuComponent implements OnInit {
 
       if (fields[0] === 'aws' && fields[1] === 'cf') {
         console.log("AwsFileMenuComponent: cf adding filename = " + filename + ", subject = " + fields[1]);
-        cfdir.addFile(filename, e.id);    // let e: ElementRef;
-        // e.nativeElement.Renderer2();
-    
+        cfdir.addFile(filename, e.id);    // let e: ElementRef;            
       }
 
       if (fields[0] === 'aws' && fields[1] === 's3') {
@@ -68,7 +66,6 @@ export class AwsFileMenuComponent implements OnInit {
     return dirbase;
   }
 }
-
 
 // {
 //   "url": "https://api.github.com/gists/650757635de8b7bd2122fe706c1fc91b",

@@ -39,6 +39,8 @@ import { AwsViewerComponent } from './aws/viewer/viewer.component';
 import { AwsNgxGistComponent } from './aws/ngx-gist/ngx-gist.component';
 import { AwsDescriptionComponent } from './aws/description/description.component';
 import { ProjectService } from './services/projects.service';
+import { ProjectConfigService } from './services/projects-config.service';
+import { GistService } from './services/gist.service';
 
 import { PythonViewerComponent } from './python/viewer/viewer.component';
 import { PythonComponent } from './python/python.component';
@@ -93,7 +95,7 @@ import { PythonOutputComponent } from './python/output/output.component';
     HttpClientModule,
     CodemirrorModule
   ],
-  providers: [ReadFileHttpClientService, ProjectService],
+  providers: [ReadFileHttpClientService, ProjectService, GistService, ProjectConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

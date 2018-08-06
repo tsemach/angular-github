@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
+import { ProjectConfigService } from './projects-config.service'
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/merge';
@@ -13,6 +14,7 @@ import  * as yaml from 'js-yaml';
 import * as marked from 'marked';
 
 import { ProjectRepository } from './project-repository.interface';
+import { GistService } from './gist.service';
 
 /**
  * example of https://api.github.com/repos/${user}/${repo}/contents/
@@ -35,38 +37,23 @@ import { ProjectRepository } from './project-repository.interface';
  */
 
 @Injectable()
-export class ProjectService {
-  // <start: projects-yaml>
-  projectsYaml = `
-    projects:
-    - repo: docker
-      user: tsemach
-    - repo: angular-github
-      user: tsemach
-    - repo: pyexamples
-      user: tsemach  
-    - repo: angular-rabbitmq
-      user: tsemach
-    - repo: angular-routing
-      user: tsemach    
-    `;
-  // <end: projects-yaml>  
+export class ProjectService {  
 
-  projects = {};  
-  current = new ProjectRepository();
-  //isProjectReady = new Subject<{filelist: Array<string>, dirlist: Array<string>}>();
+  config = new ProjectConfigService;
+  current = new ProjectRepository();  
   
+  // 'Authorization': `'token ' + ${environment.token}'`    
   private cached = new Map<string, string>();    
   private httpOptions = {
     headers: new HttpHeaders({ 
       //'Access-Control-Allow-Origin': '*',      
-      'Authorization': `'token ' + ${environment.token}'`    
+      'Authorization': 'token 323fc73a52b1d77abe8c6d74377aee19eaa7db8b'
     })
   };
 
-  constructor(private http: HttpClient) {
-    this.projects = yaml.load(this.projectsYaml);
-    console.log("projects = " + JSON.stringify(this.projects, undefined, 2));      
+  constructor(private http: HttpClient, private gist: GistService) {
+    console.log('Got GIST from SERVICE = ' + this.gist.getProjectYaml());
+    console.log("projects = " + JSON.stringify(this.config.gerProjects(), undefined, 2));      
     console.log("token = " + environment.token);
     //marked.setOptions({});  
   }
@@ -90,7 +77,7 @@ export class ProjectService {
   }
 
   getProjects() {
-    return this.projects['projects'];
+    return this.config.gerProjects()['projects'];
   }
 
   getProjectList(filelist: Array<string>, dirlist: Array<string>, isProjectReady) {

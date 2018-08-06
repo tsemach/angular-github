@@ -5,8 +5,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 
-import { ProjectService } from '../../services/projects.service';
+//import { ProjectService } from '../../services/projects.service';
+import { ReadFileHttpClientService } from '../../services/read-file.httpclient.service';
 import { ProjectCodeParser } from './project-code-parser';
+import { ProjectConfigService } from '../../services/projects-config.service';
 
 /**
  * checkout https://stackoverflow.com/questions/36467020/codemirror-as-angular2-component
@@ -35,9 +37,11 @@ export class ProjectViewerComponent implements OnInit {
 
   editor:CodeMirror.Editor;
 
-  isFileReady = new Subject<string>();
+  fileIsReady = new Subject<string>();
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService) {     
+  constructor(private route: ActivatedRoute, 
+              private projectConfigService: ProjectConfigService,
+              private readFileService: ReadFileHttpClientService) {     
   }
 
   ngOnInit() {
@@ -52,10 +56,10 @@ export class ProjectViewerComponent implements OnInit {
     )
   }
   
-  getFile(path) {
+  getFile(filename) {
     //this.readFileService.setProject('pyexamples');
   
-    this.isFileReady.subscribe(
+    this.fileIsReady.subscribe(
       (data: string) => {        
         this.code = this.parser.parse(data);
         this.description = this.parser.description;
@@ -63,7 +67,7 @@ export class ProjectViewerComponent implements OnInit {
         this.from = this.parser.from;
       }
     );
-    this.projectService.getFile(path, this.isFileReady);
+    this.readFileService.getFile(filename, this.fileIsReady);
   }
 
 }

@@ -6,7 +6,7 @@ import { TreeViewComponent } from '../../tree-view/tree-view.component';
 import { Directory } from '../../services/directory';
 import { ReadFileHttpClientService } from '../../services/read-file.httpclient.service';
 import { ParseProjectFiles } from '../../services/parser-filelist';
-import { ProjectService } from '../../services/projects.service';
+import { ProjectConfigService } from '../../services/projects-config.service';
 import { ProjectRepository } from '../../services/project-repository.interface';
 
 /**
@@ -34,8 +34,73 @@ export class ProjectLeftMenuComponent implements OnInit, OnDestroy {
 
   constructor(
     private readFileService: ReadFileHttpClientService, 
-    private projectService: ProjectService) {
+    private projectConfigService: ProjectConfigService) {    
+  }
+
+  ngOnInit() {        
+    //-------------------------------------------------------------------------------------------------------------------
+    this.loadProjectList();
+    //-------------------------------------------------------------------------------------------------------------------
+  }
+
+  loadProjectList() {
+    this.readFileService.setProject(this.projectConfigService.current.repo);
+
+    this.fileIsReady.subscribe(
+      (data: string) => {
+        this.directories = this.parse(data);       
+      }
+    );
+    this.readFileService.getFile('project.list', this.fileIsReady);
+  }
+
+  parse(filelist) {    
+    let filesArray = filelist.split(/\r?\n/);
+
+    let directories = new Array<Directory>();
+    let parser = new ParseProjectFiles();
+
+    let basedir = parser.parse(filesArray); 
     
+    return [basedir.directories[0]];     
+  }
+
+  // loadProjectListOld() {
+  //   console.log("LeftMenu: user = " + this.projectService.current.user + ", repo = " + this.projectService.current.repo);
+  //   let filelist = new Array<string>();
+  //   let dirlist = new Array<string>();
+
+  //   this.isProjectReady.subscribe(
+  //     (data: Array<string>) => {
+  //       let list = '';
+  //       data.forEach((e) => {          
+  //         if (e !== '') { list += e + '\n'; } 
+  //       });
+
+  //       this.directories = this.parse(list);                
+  //       //console.log('LeftMenu: dirrectories = ' + JSON.stringify(this.directories, undefined, 2));
+  //     }
+  //   )
+  //   this.projectService.getProjectList(filelist, dirlist, this.isProjectReady);
+  // }
+
+  // parse(filelist) {    
+  //   let filesArray = filelist.split(/\r?\n/);
+    
+  //   let parser = new ParseProjectFiles();
+
+  //   let basedir = parser.parse(filesArray); 
+    
+  //   return [basedir]; 
+  // }
+  
+  ngOnDestroy() {
+    this.fileIsReady.unsubscribe();    
+    this.isProjectReady.unsubscribe();
+  }
+  
+}
+
     // let fall2014 = new Directory('Fall 2014',[],['image1.jpg','image2.jpg','image3.jpg']);
     // let summer2014 = new Directory('Summer 2014',[],['image10.jpg','image20.jpg','image30.jpg']);
     // let pics = new Directory('Pictures',[summer2014,fall2014],[]);
@@ -48,54 +113,3 @@ export class ProjectLeftMenuComponent implements OnInit, OnDestroy {
     // this.directories = [pyexamples]; 
 
     // console.log("directories = " + JSON.stringify(this.directories, undefined, 2));
-  }
-
-  ngOnInit() {
-    // path is: https://raw.githubusercontent.com/tsemach/pyexamples/master/pyexamples.list
-    // this.readFileService.setProject('pyexamples');
-
-    // this.fileIsReady.subscribe(
-    //   (data: string) => {
-    //     //this.directories = this.parse(data);       
-    //   }
-    // );
-    // this.readFileService.getFile('pyexamples.list', this.fileIsReady);
-
-    //-------------------------------------------------------------------------------------------------------------------
-    console.log("LeftMenu: user = " + this.projectService.current.user + ", repo = " + this.projectService.current.repo);
-    let filelist = new Array<string>();
-    let dirlist = new Array<string>();
-
-    this.isProjectReady.subscribe(
-      (data: Array<string>) => {
-        let list = '';
-        data.forEach((e) => {          
-          if (e !== '') { list += e + '\n'; } 
-        });
-
-        this.directories = this.parse(list);                
-        //console.log('LeftMenu: dirrectories = ' + JSON.stringify(this.directories, undefined, 2));
-      }
-    )
-    this.projectService.getProjectList(filelist, dirlist, this.isProjectReady);
-    //console.log("LeftMenu: filelist = " + filelist);
-    //-------------------------------------------------------------------------------------------------------------------
-  }
-
-  parse(filelist) {    
-    let filesArray = filelist.split(/\r?\n/);
-    
-    let parser = new ParseProjectFiles();
-
-    let basedir = parser.parse(filesArray); 
-    
-    return [basedir]; 
-  }
-
-  ngOnDestroy() {
-    this.fileIsReady.unsubscribe();    
-    this.isProjectReady.unsubscribe();
-  }
-  
-}
-

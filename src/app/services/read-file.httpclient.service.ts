@@ -28,8 +28,8 @@ export class ReadFileHttpClientService {
     /**     
      * @param project a github project to work with
      */
-    setProject(project: string) {
-      this.base = 'https://raw.githubusercontent.com/tsemach/'.concat(project + '/master');
+    setProject(repo: string, user = 'tsemach') {
+      this.base = `https://raw.githubusercontent.com/${user}/`.concat(repo + '/master');
       console.log("ReadFileService:setProject: this.base = " + this.base);
     }
     
