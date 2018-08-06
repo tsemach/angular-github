@@ -28,7 +28,12 @@ export class ProjectConfigService {
     - repo: typescript-txjs
       user: tsemach
       load: list
-      
+    - repo: javascript-rxjs
+      user: tsemach
+      load: list
+    - repo: angular-github
+      user: tsemach
+      load: list  
     - repo: pyexamples
       user: tsemach  
       load: list

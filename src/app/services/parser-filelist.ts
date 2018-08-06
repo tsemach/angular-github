@@ -41,16 +41,18 @@ export class ParseProjectFiles {
     this.parseFilePath(filepath, subdir);
   }
 
-  parse(filelist: Array<string>) {    
+  parse(filelist: Array<string>) {
     filelist.forEach(path => {
-      //console.log("going to parse: " + path);
+      if (path.length > 0) {            
+        console.log("going to parse: " + path);
       
-      this.parseFilePath(path.split('/'), this.dirbase);
+        this.parseFilePath(path.split('/'), this.dirbase);
+      }
     });
     
     this.dirbase.setDirectories();
     
-    //this.dirbase.print();
+    this.dirbase.print();
     
     return this.dirbase;
   }  

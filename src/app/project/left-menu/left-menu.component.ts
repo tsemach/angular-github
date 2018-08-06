@@ -47,7 +47,7 @@ export class ProjectLeftMenuComponent implements OnInit, OnDestroy {
     this.readFileService.setProject(this.projectConfigService.current.repo);
 
     this.fileIsReady.subscribe(
-      (data: string) => {
+      (data: string) => {                
         this.directories = this.parse(data);       
       }
     );
@@ -62,7 +62,7 @@ export class ProjectLeftMenuComponent implements OnInit, OnDestroy {
 
     let basedir = parser.parse(filesArray); 
     
-    return [basedir.directories[0]];     
+    return [basedir];     
   }
 
   // loadProjectListOld() {
