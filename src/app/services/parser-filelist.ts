@@ -44,7 +44,7 @@ export class ParseProjectFiles {
   parse(filelist: Array<string>) {
     filelist.forEach(path => {
       if (path.length > 0) {            
-        console.log("going to parse: " + path);
+        //console.log("going to parse: " + path);
       
         this.parseFilePath(path.split('/'), this.dirbase);
       }
@@ -52,7 +52,7 @@ export class ParseProjectFiles {
     
     this.dirbase.setDirectories();
     
-    this.dirbase.print();
+    //this.dirbase.print();
     
     return this.dirbase;
   }  

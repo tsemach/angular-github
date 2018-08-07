@@ -47,14 +47,13 @@ export class ProjectService {
   private httpOptions = {
     headers: new HttpHeaders({ 
       //'Access-Control-Allow-Origin': '*',      
-      'Authorization': 'token 323fc73a52b1d77abe8c6d74377aee19eaa7db8b'
+      'Authorization': 'token 1234567890'
     })
   };
 
   constructor(private http: HttpClient, private gist: GistService) {
-    console.log('Got GIST from SERVICE = ' + this.gist.getProjectYaml());
-    console.log("projects = " + JSON.stringify(this.config.gerProjects(), undefined, 2));      
-    console.log("token = " + environment.token);
+    //console.log("projects = " + JSON.stringify(this.config.gerProjects(), undefined, 2));      
+    // console.log("token = " + environment.token);
     //marked.setOptions({});  
   }
 

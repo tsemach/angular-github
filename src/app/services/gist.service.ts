@@ -15,7 +15,7 @@ import  * as yaml from 'js-yaml';
 export class GistService {
 
   projectYaml: string;
-  user = 'tsemach';
+  user = environment.user;
 
   private cached = new Map<string, string>();    
   private httpOptions = {

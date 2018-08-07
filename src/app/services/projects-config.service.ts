@@ -59,8 +59,8 @@ export class ProjectConfigService {
 
   constructor() {
     this.projects = yaml.load(this.projectsYaml);
-    console.log("projects = " + JSON.stringify(this.projects, undefined, 2));
-    console.log("token = " + environment.token);    
+    //console.log("projects = " + JSON.stringify(this.projects, undefined, 2));
+    //console.log("token = " + environment.token);    
   }
 
   setUser(user: string) {
