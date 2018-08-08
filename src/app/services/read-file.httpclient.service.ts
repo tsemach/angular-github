@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as marked from 'marked';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ReadFileHttpClientService {
-    private base = 'https://raw.githubusercontent.com/tsemach/';
+    private base = `https://raw.githubusercontent.com/${environment.user}/`;
     private cached = new Map<string, string>();    
 
     httpOptions = {
@@ -28,7 +29,7 @@ export class ReadFileHttpClientService {
     /**     
      * @param project a github project to work with
      */
-    setProject(repo: string, user = 'tsemach') {
+    setProject(repo: string, user = environment.user) {
       this.base = `https://raw.githubusercontent.com/${user}/`.concat(repo + '/master');
       console.log("ReadFileService:setProject: this.base = " + this.base);
     }

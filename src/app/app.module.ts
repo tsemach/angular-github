@@ -37,9 +37,7 @@ import { AwsFileMenuComponent } from './aws/file-menu/file-menu.component';
 import { AwsViewerComponent } from './aws/viewer/viewer.component';
 import { AwsNgxGistComponent } from './aws/ngx-gist/ngx-gist.component';
 import { AwsDescriptionComponent } from './aws/description/description.component';
-import { ProjectService } from './services/projects.service';
 import { ProjectConfigService } from './services/projects-config.service';
-import { GistService } from './services/gist.service';
 import { MarkdownModule } from 'angular2-markdown';
 import { ProjectTopbarNavComponent } from './project/topbar-nav/topbar-nav.component';
 
@@ -97,7 +95,7 @@ import { PythonOutputComponent } from './python/output/output.component';
     CodemirrorModule,
     MarkdownModule.forRoot(),
   ],
-  providers: [ReadFileHttpClientService, ProjectService, GistService, ProjectConfigService],
+  providers: [ReadFileHttpClientService, ProjectConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

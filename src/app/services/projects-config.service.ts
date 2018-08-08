@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ProjectRepository } from './project-repository.interface';
+import { ReadFileHttpClientService } from './read-file.httpclient.service';
+import { Subject } from 'rxjs/Subject';
 
 import  * as yaml from 'js-yaml';
 import * as marked from 'marked';
@@ -45,22 +47,18 @@ export class ProjectConfigService {
       load: list
   `;
 
-  current = new ProjectRepository();  
-  
+  current = new ProjectRepository();    
   projects = {};  
-  
-  // // 'Authorization': `'token ' + ${environment.token}'`    
-  // private httpOptions = {
-  //   headers: new HttpHeaders({ 
-  //     //'Access-Control-Allow-Origin': '*',      
-  //     'Authorization': 'token 323fc73a52b1d77abe8c6d74377aee19eaa7db8b'    
-  //   })
-  // };
+  fileIsReady = new Subject<string>();
 
-  constructor() {
+  constructor(private readFileService: ReadFileHttpClientService) {
+
+    // set default projects as defined here
     this.projects = yaml.load(this.projectsYaml);
-    //console.log("projects = " + JSON.stringify(this.projects, undefined, 2));
-    //console.log("token = " + environment.token);    
+
+    // try loading 'projects.yml' from github
+    // this.readFileService.setProject(environment.config.repository, environment.user);
+    // this.getFile('projects.yml');
   }
 
   setUser(user: string) {
@@ -81,8 +79,29 @@ export class ProjectConfigService {
     this.current.base = `https://api.github.com/repos/${this.current.user}/${this.current.repo}/contents`;    
   }
 
-  gerProjects() {
+  getProjects() {
     return this.projects;
+  }
+
+  loadProjects(isProjectsReady) {
+    // set default projects as defined here
+    this.projects = yaml.load(this.projectsYaml);
+
+    // try loading 'projects.yml' from github
+    this.readFileService.setProject(environment.config.repository, environment.user);
+    this.getFile('projects.yml', isProjectsReady);
+  }
+
+  private getFile(filename, isProjectsReady) {      
+    this.fileIsReady.subscribe(
+      (data: string) => {                
+        console.log("ProjectConfigService: data = " + JSON.stringify(data, undefined, 2));    
+        this.projects = yaml.load(data);
+        console.log("ProjectConfigService: projects = " + JSON.stringify(this.projects, undefined, 2));    
+        isProjectsReady.next(this.projects);
+      }
+    );
+    this.readFileService.getFile(filename, this.fileIsReady);
   }
 }
 

@@ -1,11 +1,19 @@
 projects:
-  - repo: docker
-    user: tsemach
-  - repo: angular-github
-    user: tsemach
-  - repo: pyexamples
-    user: tsemach  
-  - repo: angular-rabbitmq
-    user: tsemach
-  - repo: angular-routing
-    user: tsemach    
+    - repo: docker
+      user: tsemach
+    - repo: angular-http-client
+      user: tsemach
+    - repo: angular-observers
+      user: tsemach
+    - repo: typescript-txjs
+      user: tsemach
+    - repo: javascript-rxjs
+      user: tsemach
+    - repo: angular-rabbitmq
+      user: tsemach
+    - repo: angular-github
+      user: tsemach
+    - repo: angular-skeleton
+      user: tsemach
+    - repo: pyexamples
+      user: tsemach  
