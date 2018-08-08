@@ -73,7 +73,19 @@ You have to turn on GitHub pages on the project setting menu.
 So the **`master`** branch is include the code the the **`gh-pages**` branch include the pages GitHub pages served to browser.
 So all the files from ./dist directory need to commit into the **gh-pages** branch.
 
-  
+* On other terminal clone the project on gh-pages - **`git clone -b gh-pages git@github.com:<username>/angular-github.git`**
+* Run - ````git rm -rf *```` to remove all files from the gh-pages branch.
+* Copy all build files from dist directory of the master branch to your gh-pages branch.
+* Run - ````git add --all```` to add the build files into you gh-pages branch.
+* Commit and push.
+* 
+* Got to https://<username>.github.io/angular-github/ and Enjoy!.
+
+
+
+
+
+
 
 
 
