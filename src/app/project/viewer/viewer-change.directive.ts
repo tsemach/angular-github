@@ -1,9 +1,9 @@
 import { Directive, Input, ElementRef, HostListener, HostBinding, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appViewerChange]'
+  selector: '[appProjectViewerChange]'
 })
-export class ViewerChangeDirective {
+export class ProjectViewerChangeDirective {
 
   @HostBinding('style.size') size: string;
 

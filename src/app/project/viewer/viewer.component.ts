@@ -40,9 +40,9 @@ export class ProjectViewerComponent implements OnInit {
 
   fileIsReady = new Subject<string>();
 
-  constructor(private route: ActivatedRoute, 
-              private projectConfigService: ProjectConfigService,
-              private readFileService: ReadFileHttpClientService) {     
+  constructor(private route: ActivatedRoute,               
+              private readFileService: ReadFileHttpClientService,
+              public projectConfigService: ProjectConfigService) {     
   }
 
   ngOnInit() {

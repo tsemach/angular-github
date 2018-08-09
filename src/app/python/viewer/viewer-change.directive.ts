@@ -1,9 +1,9 @@
 import { Directive, Input, ElementRef, HostListener, HostBinding, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appViewerChange]'
+  selector: '[appPythonViewerChange]'
 })
-export class ViewerChangeDirective {
+export class PythonViewerChangeDirective {
 
   @HostBinding('style.size') size: string;
 
@@ -13,6 +13,7 @@ export class ViewerChangeDirective {
   @HostListener('change') ngOnChanges() {
     console.log('ViewerChangeDirective: test');
   }
+  
   @HostListener("input", ["$event.target.value"])
   onInput(value) {
     console.log(value)
