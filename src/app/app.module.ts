@@ -42,16 +42,6 @@ import { ProjectTopbarNavComponent } from './project/topbar-nav/topbar-nav.compo
 import { ProjectDropdownDirective } from './project/left-menu/dropdown.directive';
 import { ProjectTopbarComponent } from './project/topbar/topbar.component';
 
-import { PythonViewerComponent } from './python/viewer/viewer.component';
-import { PythonComponent } from './python/python.component';
-import { PythonLeftMenuComponent } from './python/left-menu/left-menu.component';
-import { PythonDescriptionComponent } from './python/description/description.component';
-import { PythonOutputComponent } from './python/output/output.component';
-import { PythonDropdownDirective } from './python/left-menu/dropdown.directive';
-import { PythonTopbarComponent } from './python/topbar/topbar.component';
-import { PythonTopbarNavbarBrandComponent } from './python/topbar-navbar-brand/topbar-navbar-brand.component';
-import { PythonTopbarNavComponent } from './python/topbar-nav/topbar-nav.component';
-import { PythonViewerChangeDirective } from './python/viewer/viewer-change.directive';
 import { ProjectViewerChangeDirective } from './project/viewer/viewer-change.directive';
 
 @NgModule({
@@ -80,19 +70,9 @@ import { ProjectViewerChangeDirective } from './project/viewer/viewer-change.dir
     AwsViewerComponent,
     AwsNgxGistComponent,
     AwsDescriptionComponent,
-    PythonViewerComponent,
-    PythonComponent,
-    PythonLeftMenuComponent,
-    PythonDescriptionComponent,
-    PythonOutputComponent,
     ProjectTopbarNavComponent,   
     ProjectDropdownDirective, 
     ProjectTopbarComponent,
-    PythonDropdownDirective,
-    PythonTopbarComponent,
-    PythonTopbarNavbarBrandComponent,
-    PythonTopbarNavComponent,
-    PythonViewerChangeDirective,
     ProjectViewerChangeDirective,
   ],
   imports: [
