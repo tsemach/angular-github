@@ -4,14 +4,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
-  selector: 'app-topbar',
+  selector: 'app-python-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.css'],
   host: {
     'class': 'navbar navbar-expand-lg fixed-top navbar-dark bg-dark' 
   },
 })
-export class TopbarComponent implements OnInit {
+export class PythonTopbarComponent implements OnInit {
   isCollapsed: boolean = true;
 
   constructor(private sanitizer: DomSanitizer, 

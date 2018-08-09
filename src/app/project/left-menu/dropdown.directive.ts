@@ -3,9 +3,9 @@ import { Directive, OnInit, ElementRef, HostListener, Renderer2 } from '@angular
 import { JsonpClientBackend } from '@angular/common/http';
 
 @Directive({
-  selector: '[appDropdownDirective]'
+  selector: '[appProjectDropdownDirective]'
 })
-export class DropdownDirective implements OnInit {
+export class ProjectDropdownDirective implements OnInit {
 
   constructor(private eRef: ElementRef, private renderer: Renderer2) { }
 

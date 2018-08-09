@@ -40,12 +40,15 @@ import { AwsDescriptionComponent } from './aws/description/description.component
 import { ProjectConfigService } from './services/projects-config.service';
 import { MarkdownModule } from 'angular2-markdown';
 import { ProjectTopbarNavComponent } from './project/topbar-nav/topbar-nav.component';
+import { ProjectDropdownDirective } from './project/left-menu/dropdown.directive';
 
 import { PythonViewerComponent } from './python/viewer/viewer.component';
 import { PythonComponent } from './python/python.component';
 import { PythonLeftMenuComponent } from './python/left-menu/left-menu.component';
 import { PythonDescriptionComponent } from './python/description/description.component';
 import { PythonOutputComponent } from './python/output/output.component';
+// import { PythonDropdownDirective } from './python/left-menu/dropdown.directive';
+// import { PythonTopbarComponent } from './python/topbar/topbar.component';
 
 @NgModule({
   declarations: [
@@ -79,8 +82,10 @@ import { PythonOutputComponent } from './python/output/output.component';
     PythonLeftMenuComponent,
     PythonDescriptionComponent,
     PythonOutputComponent,
-    ProjectTopbarNavComponent,
-    
+    ProjectTopbarNavComponent,   
+    ProjectDropdownDirective, 
+    // PythonDropdownDirective,
+    // PythonTopbarComponent
   ],
   imports: [
     BrowserModule,
