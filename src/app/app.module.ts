@@ -21,7 +21,6 @@ import { DropdownDirective } from './tree-view/dropdown.directive';
 import { TypeScriptComponent } from './typescript/typescript.component';
 import { TreeViewComponent } from './tree-view/tree-view.component';
 import { ReadFileHttpClientService } from './services/read-file.httpclient.service';
-import { ViewerChangeDirective } from './project/viewer/viewer-change.directive';
 import { ProjectDescriptionComponent } from './project/description/description.component';
 import { ProjectOutputComponent } from './project/output/output.component';
 import { AngularComponent } from './angular/angular.component';
@@ -41,14 +40,19 @@ import { ProjectConfigService } from './services/projects-config.service';
 import { MarkdownModule } from 'angular2-markdown';
 import { ProjectTopbarNavComponent } from './project/topbar-nav/topbar-nav.component';
 import { ProjectDropdownDirective } from './project/left-menu/dropdown.directive';
+import { ProjectTopbarComponent } from './project/topbar/topbar.component';
 
 import { PythonViewerComponent } from './python/viewer/viewer.component';
 import { PythonComponent } from './python/python.component';
 import { PythonLeftMenuComponent } from './python/left-menu/left-menu.component';
 import { PythonDescriptionComponent } from './python/description/description.component';
 import { PythonOutputComponent } from './python/output/output.component';
-// import { PythonDropdownDirective } from './python/left-menu/dropdown.directive';
-// import { PythonTopbarComponent } from './python/topbar/topbar.component';
+import { PythonDropdownDirective } from './python/left-menu/dropdown.directive';
+import { PythonTopbarComponent } from './python/topbar/topbar.component';
+import { PythonTopbarNavbarBrandComponent } from './python/topbar-navbar-brand/topbar-navbar-brand.component';
+import { PythonTopbarNavComponent } from './python/topbar-nav/topbar-nav.component';
+import { PythonViewerChangeDirective } from './python/viewer/viewer-change.directive';
+import { ProjectViewerChangeDirective } from './project/viewer/viewer-change.directive';
 
 @NgModule({
   declarations: [
@@ -61,7 +65,6 @@ import { PythonOutputComponent } from './python/output/output.component';
     DropdownDirective,
     TypeScriptComponent,
     TreeViewComponent,
-    ViewerChangeDirective,
     ProjectDescriptionComponent,
     ProjectOutputComponent,
     AngularComponent,
@@ -84,8 +87,13 @@ import { PythonOutputComponent } from './python/output/output.component';
     PythonOutputComponent,
     ProjectTopbarNavComponent,   
     ProjectDropdownDirective, 
-    // PythonDropdownDirective,
-    // PythonTopbarComponent
+    ProjectTopbarComponent,
+    PythonDropdownDirective,
+    PythonTopbarComponent,
+    PythonTopbarNavbarBrandComponent,
+    PythonTopbarNavComponent,
+    PythonViewerChangeDirective,
+    ProjectViewerChangeDirective,
   ],
   imports: [
     BrowserModule,
